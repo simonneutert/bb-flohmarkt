@@ -1,0 +1,11 @@
+{:paths ["src", "test"]
+ :min-bb-version "1.3.184"
+ :tasks {test {:doc "Run tests"
+               :task (shell "bb test_runner.clj")}
+         format-zprint {:extra-deps {zprint/zprint {:mvn/version "1.2.8"}},
+                        :requires ([zprint.main]),
+                        :task (apply zprint.main/-main *command-line-args*)}
+         scrape {:doc "Scrape all items from a user's profile"
+                 :task flohmarkt.scrape/-main}
+         find-pro-accounts-user-id {:doc "Find a pro account's user ID"
+                                    :task flohmarkt.find-pro-accounts-user-id/-main}}}
